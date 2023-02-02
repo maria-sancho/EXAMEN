@@ -1,20 +1,19 @@
 import java.util.Random;
-
 public class Password {
     private int longitud;
-    private String contrasena;
+    private String contraseña;
 
     public Password() {
         this.longitud = 8;
-        this.contrasena = generarContrasena();
+        this.contraseña = generarPassword();
     }
 
     public Password(int longitud) {
         this.longitud = longitud;
-        this.contrasena = generarContrasena();
+        this.contraseña = generarPassword();
     }
 
-    public String generarContrasena() {
+    public String generarPassword() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
         String contrasena = "";
         Random rand = new Random();
@@ -28,29 +27,33 @@ public class Password {
         int mayusculas = 0;
         int minusculas = 0;
         int numeros = 0;
-        for (int i = 0; i < this.contrasena.length(); i++) {
-            char caracter = this.contrasena.charAt(i);
-            if (Character.isUpperCase(caracter)) {
+
+        for (int i = 0; i < this.contraseña.length(); i++) {
+            char c = this.contraseña.charAt(i);
+            if (Character.isUpperCase(c)) {
                 mayusculas++;
-            } else if (Character.isLowerCase(caracter)) {
+            } else if (Character.isLowerCase(c)) {
                 minusculas++;
-            } else if (Character.isDigit(caracter)) {
+            } else if (Character.isDigit(c)) {
                 numeros++;
             }
         }
-        return (mayusculas > 2 && minusculas > 1 && numeros > 5);
-    }
 
-    public String getContrasena() {
-        return contrasena;
+        return mayusculas > 2 && minusculas > 1 && numeros > 5;
     }
 
     public int getLongitud() {
         return longitud;
     }
 
+    public String getContrasena() {
+        return contraseña;
+    }
+
     public void setLongitud(int longitud) {
         this.longitud = longitud;
-        this.contrasena = generarContrasena();
+        this.contraseña = generarPassword();
     }
 }
+
+
